@@ -24,6 +24,10 @@
     </script>
     <style>
         /* Custom Liquid Glass & Monochromatic Styling */
+        html {
+            scroll-behavior: smooth;
+        }
+
         body {
             background-color: #FFFFFF;
             color: #111111;
@@ -45,7 +49,7 @@
             -webkit-backdrop-filter: blur(16px);
             border: 1px solid rgba(0, 0, 0, 0.06);
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.03);
-            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease, border-color 0.4s ease;
         }
 
         .liquid-glass-card:hover {
@@ -106,6 +110,25 @@
             z-index: 10;
         }
 
+        /* Scroll Reveal Animation Styling */
+        .reveal-item {
+            opacity: 0;
+            transform: translateY(35px);
+            transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+            will-change: opacity, transform;
+        }
+
+        .reveal-item.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Delays untuk elemen berurutan */
+        .delay-1 { transition-delay: 0.15s; }
+        .delay-2 { transition-delay: 0.3s; }
+        .delay-3 { transition-delay: 0.45s; }
+        .delay-4 { transition-delay: 0.6s; }
+
         /* Custom Scrollbar */
         ::-webkit-scrollbar {
             width: 8px;
@@ -124,7 +147,7 @@
 </head>
 <body class="antialiased selection:bg-black selection:text-white">
 
-    <!-- Canvas Snowfall (Depth of Field Monochromatic) -->
+    <!-- Canvas Snowfall (Crystal Snowflake Depth of Field) -->
     <canvas id="snowCanvas"></canvas>
     
     <!-- Mountain Silhouette Overlay -->
@@ -158,7 +181,7 @@
             <section class="max-w-5xl mx-auto px-6 pt-16 pb-24 text-center flex flex-col items-center">
                 
                 <!-- Foto Profil di Tengah (Di Atas Teks) -->
-                <div class="relative mb-8 group">
+                <div class="relative mb-8 group reveal-item">
                     <div class="absolute -inset-1 rounded-full bg-gradient-to-r from-neutral-300 via-neutral-500 to-neutral-200 opacity-70 blur-md group-hover:opacity-100 transition duration-500"></div>
                     <div class="relative w-36 h-36 md:w-44 md:h-44 rounded-full overflow-hidden liquid-glass border-4 border-white shadow-2xl">
                         <img src="./WhatsApp Image 2026-10-26 at 18.45.51.jpeg" alt="Dary" class="w-full h-full object-cover object-center scale-105 group-hover:scale-100 transition-transform duration-500" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=500&auto=format&fit=crop&q=60';">
@@ -169,28 +192,28 @@
                 </div>
 
                 <!-- Badge Status -->
-                <div class="inline-flex items-center space-x-2 px-4 py-1.5 rounded-full liquid-glass-card mb-6 text-xs md:text-sm font-medium">
+                <div class="inline-flex items-center space-x-2 px-4 py-1.5 rounded-full liquid-glass-card mb-6 text-xs md:text-sm font-medium reveal-item delay-1">
                     <span class="w-2 h-2 rounded-full bg-black"></span>
                     <span>Fokus Kenyamanan Pengguna & Dokumentasi Terstruktur</span>
                 </div>
 
                 <!-- Judul Utama dengan Gradasi Monokrom -->
-                <h1 class="text-4xl sm:text-6xl md:text-7xl font-extrabold tracking-tight mb-4 font-serif">
+                <h1 class="text-4xl sm:text-6xl md:text-7xl font-extrabold tracking-tight mb-4 font-serif reveal-item delay-2">
                     Halo, Saya <span class="text-gradient">Dary</span>
                 </h1>
 
                 <!-- Typewriter Idle Animation Subtitle -->
-                <div class="text-lg sm:text-2xl font-semibold text-neutral-700 h-10 mb-6 flex items-center justify-center">
+                <div class="text-lg sm:text-2xl font-semibold text-neutral-700 h-10 mb-6 flex items-center justify-center reveal-item delay-2">
                     <span id="typewriter" class="border-r-2 border-black pr-1 font-mono"></span>
                 </div>
 
                 <!-- Deskripsi Singkat -->
-                <p class="max-w-2xl text-base sm:text-lg text-neutral-600 leading-relaxed mb-10 font-normal">
+                <p class="max-w-2xl text-base sm:text-lg text-neutral-600 leading-relaxed mb-10 font-normal reveal-item delay-3">
                     Dary bersama Jarco membangun produk yang nyaman dipakai. Bukan sekadar tampilan, tapi pengalaman pengguna yang lancar, dokumentasi yang jelas, dan hasil yang konsisten.
                 </p>
 
                 <!-- Tombol CTA -->
-                <div class="flex flex-col sm:flex-row items-center justify-center gap-4 w-full sm:w-auto">
+                <div class="flex flex-col sm:flex-row items-center justify-center gap-4 w-full sm:w-auto reveal-item delay-3">
                     <a href="#karya" class="w-full sm:w-auto px-8 py-3.5 rounded-full bg-black text-white font-medium text-sm hover:bg-neutral-800 transition-all shadow-lg flex items-center justify-center space-x-2 group">
                         <span>Lihat Karya</span>
                         <svg class="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
@@ -202,15 +225,15 @@
 
                 <!-- Statistik Angka -->
                 <div class="grid grid-cols-3 gap-4 md:gap-8 mt-16 w-full max-w-xl">
-                    <div class="liquid-glass-card p-4 md:p-6 rounded-2xl text-center">
+                    <div class="liquid-glass-card p-4 md:p-6 rounded-2xl text-center reveal-item delay-1">
                         <div class="text-2xl md:text-3xl font-extrabold text-black font-serif">12</div>
                         <div class="text-xs md:text-sm text-neutral-500 mt-1 font-medium">Proyek</div>
                     </div>
-                    <div class="liquid-glass-card p-4 md:p-6 rounded-2xl text-center">
+                    <div class="liquid-glass-card p-4 md:p-6 rounded-2xl text-center reveal-item delay-2">
                         <div class="text-2xl md:text-3xl font-extrabold text-black font-serif">3 Thn</div>
                         <div class="text-xs md:text-sm text-neutral-500 mt-1 font-medium">Pengalaman</div>
                     </div>
-                    <div class="liquid-glass-card p-4 md:p-6 rounded-2xl text-center">
+                    <div class="liquid-glass-card p-4 md:p-6 rounded-2xl text-center reveal-item delay-3">
                         <div class="text-2xl md:text-3xl font-extrabold text-black font-serif">92%</div>
                         <div class="text-xs md:text-sm text-neutral-500 mt-1 font-medium">Kepuasan</div>
                     </div>
@@ -220,7 +243,7 @@
 
             <!-- Tentang Section -->
             <section id="tentang" class="max-w-4xl mx-auto px-6 py-20">
-                <div class="liquid-glass-card p-8 md:p-12 rounded-3xl relative overflow-hidden">
+                <div class="liquid-glass-card p-8 md:p-12 rounded-3xl relative overflow-hidden reveal-item">
                     <div class="absolute -right-10 -bottom-10 w-40 h-40 bg-neutral-200/50 rounded-full blur-2xl pointer-events-none"></div>
                     <h2 class="text-2xl md:text-3xl font-bold font-serif mb-6 text-black">Tentang Dary</h2>
                     <p class="text-neutral-700 leading-relaxed text-base md:text-lg mb-6">
@@ -236,31 +259,31 @@
 
             <!-- Keahlian Section -->
             <section id="keahlian" class="max-w-5xl mx-auto px-6 py-16">
-                <div class="text-center mb-12">
+                <div class="text-center mb-12 reveal-item">
                     <h2 class="text-2xl md:text-3xl font-bold font-serif mb-3">Keahlian & Kompetensi</h2>
                     <p class="text-neutral-500 text-sm md:text-base">Pilar profesionalisme dan kemampuan teknis dalam pengembangan produk.</p>
                 </div>
                 
                 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-                    <div class="liquid-glass-card p-6 rounded-2xl text-center group">
+                    <div class="liquid-glass-card p-6 rounded-2xl text-center group reveal-item delay-1">
                         <div class="w-12 h-12 mx-auto mb-4 rounded-xl bg-black text-white flex items-center justify-center font-bold text-lg group-hover:scale-110 transition-transform">01</div>
                         <h3 class="font-bold text-lg mb-2">Full Stack Web Developer</h3>
                         <p class="text-xs text-neutral-600 leading-relaxed">Membangun arsitektur web dari sisi antarmuka hingga pengelolaan database yang handal.</p>
                     </div>
 
-                    <div class="liquid-glass-card p-6 rounded-2xl text-center group">
+                    <div class="liquid-glass-card p-6 rounded-2xl text-center group reveal-item delay-2">
                         <div class="w-12 h-12 mx-auto mb-4 rounded-xl bg-black text-white flex items-center justify-center font-bold text-lg group-hover:scale-110 transition-transform">02</div>
                         <h3 class="font-bold text-lg mb-2">Kerjasama Tim</h3>
                         <p class="text-xs text-neutral-600 leading-relaxed">Kolaborasi yang solid bersama rekan kerja dan tim lintas disiplin untuk hasil optimal.</p>
                     </div>
 
-                    <div class="liquid-glass-card p-6 rounded-2xl text-center group">
+                    <div class="liquid-glass-card p-6 rounded-2xl text-center group reveal-item delay-3">
                         <div class="w-12 h-12 mx-auto mb-4 rounded-xl bg-black text-white flex items-center justify-center font-bold text-lg group-hover:scale-110 transition-transform">03</div>
                         <h3 class="font-bold text-lg mb-2">Tepat Waktu</h3>
                         <p class="text-xs text-neutral-600 leading-relaxed">Manajemen waktu pengerjaan tugas dan proyek yang terstruktur serta disiplin tinggi.</p>
                     </div>
 
-                    <div class="liquid-glass-card p-6 rounded-2xl text-center group">
+                    <div class="liquid-glass-card p-6 rounded-2xl text-center group reveal-item delay-4">
                         <div class="w-12 h-12 mx-auto mb-4 rounded-xl bg-black text-white flex items-center justify-center font-bold text-lg group-hover:scale-110 transition-transform">04</div>
                         <h3 class="font-bold text-lg mb-2">Bisa Dipercaya</h3>
                         <p class="text-xs text-neutral-600 leading-relaxed">Integritas dan transparansi penuh dalam setiap tanggung jawab dan amanah proyek.</p>
@@ -270,14 +293,14 @@
 
             <!-- Karya / Proyek Section -->
             <section id="karya" class="max-w-5xl mx-auto px-6 py-16">
-                <div class="text-center mb-12">
+                <div class="text-center mb-12 reveal-item">
                     <h2 class="text-2xl md:text-3xl font-bold font-serif mb-3">Karya & Proyek Pilihan</h2>
                     <p class="text-neutral-500 text-sm md:text-base">Portofolio unggulan yang dirancang dengan dedikasi tinggi.</p>
                 </div>
 
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
                     <!-- Proyek 1 -->
-                    <div class="liquid-glass-card p-6 md:p-8 rounded-3xl flex flex-col justify-between">
+                    <div class="liquid-glass-card p-6 md:p-8 rounded-3xl flex flex-col justify-between reveal-item delay-1">
                         <div>
                             <div class="flex justify-between items-center mb-4">
                                 <span class="px-3 py-1 bg-black text-white text-[10px] uppercase font-bold tracking-widest rounded-full">Web / Jaringan</span>
@@ -295,7 +318,7 @@
                     </div>
 
                     <!-- Proyek 2 -->
-                    <div class="liquid-glass-card p-6 md:p-8 rounded-3xl flex flex-col justify-between">
+                    <div class="liquid-glass-card p-6 md:p-8 rounded-3xl flex flex-col justify-between reveal-item delay-2">
                         <div>
                             <div class="flex justify-between items-center mb-4">
                                 <span class="px-3 py-1 bg-black text-white text-[10px] uppercase font-bold tracking-widest rounded-full">Publikasi / Jurnal</span>
@@ -316,7 +339,7 @@
 
             <!-- Kontak Section -->
             <section id="kontak" class="max-w-4xl mx-auto px-6 py-20">
-                <div class="liquid-glass-card p-8 md:p-12 rounded-3xl text-center">
+                <div class="liquid-glass-card p-8 md:p-12 rounded-3xl text-center reveal-item">
                     <h2 class="text-2xl md:text-3xl font-bold font-serif mb-4">Mari Terhubung</h2>
                     <p class="text-neutral-600 text-sm md:text-base max-w-xl mx-auto mb-8">
                         Tertarik berkolaborasi dalam proyek web, riset, atau diskusi seputar teknologi? Silakan hubungi saya melalui tautan di bawah ini.
@@ -359,6 +382,29 @@
 
     <!-- Scripts -->
     <script>
+        // Scroll Reveal Observer Function (Smooth Delay Effect)
+        document.addEventListener("DOMContentLoaded", function () {
+            const revealElements = document.querySelectorAll(".reveal-item");
+
+            const observerOptions = {
+                root: null,
+                rootMargin: "0px",
+                threshold: 0.15
+            };
+
+            const revealObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add("active");
+                        // opsional: unobserve agar animasi hanya berjalan sekali saat di-scroll
+                        // revealObserver.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+
+            revealElements.forEach(el => revealObserver.observe(el));
+        });
+
         // Typewriter Idle Effect
         const roles = [
             "Full Stack Developer",
@@ -398,7 +444,6 @@
 
         // Click Ripple Effect
         document.addEventListener("click", function (e) {
-            // Avoid triggering inside modals or interactive buttons if needed
             const ripple = document.createElement("div");
             ripple.className = "ripple";
             ripple.style.left = `${e.clientX}px`;
@@ -432,7 +477,7 @@
             }, 300);
         }
 
-        // Canvas Snowfall Animation (Depth of Field)
+        // Canvas Crystal Snowflake Animation (Depth of Field)
         const canvas = document.getElementById("snowCanvas");
         const ctx = canvas.getContext("2d");
 
@@ -444,17 +489,49 @@
         resizeCanvas();
 
         const snowflakes = [];
-        const numFlakes = 65;
+        const numFlakes = 60;
+
+        // Function to draw 6-arm crystal snowflake
+        function drawSnowflake(x, y, radius, blur, opacity, rotation) {
+            ctx.save();
+            ctx.translate(x, y);
+            ctx.rotate(rotation);
+            ctx.filter = `blur(${blur}px)`;
+            ctx.strokeStyle = `rgba(30, 30, 30, ${opacity})`;
+            ctx.lineWidth = radius * 0.25;
+            ctx.lineCap = "round";
+
+            // Draw 6 main arms
+            for (let i = 0; i < 6; i++) {
+                ctx.beginPath();
+                ctx.moveTo(0, 0);
+                ctx.lineTo(0, -radius);
+                ctx.stroke();
+
+                // Draw branches
+                ctx.beginPath();
+                ctx.moveTo(0, -radius * 0.5);
+                ctx.lineTo(radius * 0.3, -radius * 0.75);
+                ctx.moveTo(0, -radius * 0.5);
+                ctx.lineTo(-radius * 0.3, -radius * 0.75);
+                ctx.stroke();
+
+                ctx.rotate(Math.PI / 3);
+            }
+            ctx.restore();
+        }
 
         for (let i = 0; i < numFlakes; i++) {
             snowflakes.push({
                 x: Math.random() * canvas.width,
                 y: Math.random() * canvas.height,
-                radius: Math.random() * 3.5 + 1,
-                speedY: Math.random() * 0.8 + 0.3,
-                speedX: (Math.random() - 0.5) * 0.5,
-                blur: Math.random() * 4 + 1, // Depth of field blur simulation
-                opacity: Math.random() * 0.5 + 0.2
+                radius: Math.random() * 8 + 4,
+                speedY: Math.random() * 0.7 + 0.3,
+                speedX: (Math.random() - 0.5) * 0.4,
+                rotation: Math.random() * Math.PI * 2,
+                rotSpeed: (Math.random() - 0.5) * 0.02,
+                blur: Math.random() * 3.5 + 0.5, // Depth of field blur simulation
+                opacity: Math.random() * 0.45 + 0.15
             });
         }
 
@@ -462,26 +539,21 @@
             ctx.clearRect(0, 0, canvas.width, canvas.height);
             
             snowflakes.forEach(flake => {
-                ctx.save();
-                ctx.beginPath();
-                ctx.filter = `blur(${flake.blur}px)`;
-                ctx.fillStyle = `rgba(30, 30, 30, ${flake.opacity})`;
-                ctx.arc(flake.x, flake.y, flake.radius, 0, Math.PI * 2);
-                ctx.fill();
-                ctx.restore();
+                drawSnowflake(flake.x, flake.y, flake.radius, flake.blur, flake.opacity, flake.rotation);
 
-                // Update position
+                // Update position & rotation
                 flake.y += flake.speedY;
                 flake.x += flake.speedX;
+                flake.rotation += flake.rotSpeed;
 
-                if (flake.y > canvas.height + 10) {
-                    flake.y = -10;
+                if (flake.y > canvas.height + 20) {
+                    flake.y = -20;
                     flake.x = Math.random() * canvas.width;
                 }
-                if (flake.x > canvas.width + 10) {
-                    flake.x = -10;
-                } else if (flake.x < -10) {
-                    flake.x = canvas.width + 10;
+                if (flake.x > canvas.width + 20) {
+                    flake.x = -20;
+                } else if (flake.x < -20) {
+                    flake.x = canvas.width + 20;
                 }
             });
 
