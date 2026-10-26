@@ -60,7 +60,7 @@
 
         /* Monochromatic Text Gradient */
         .text-gradient {
-            background: linear-gradient(135deg, #111111 0%, #444444 50%, #222222 100%);
+            background: linear-gradient(135deg, #111111 0%, #555555 50%, #222222 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
@@ -69,7 +69,7 @@
         .ripple {
             position: absolute;
             border-radius: 50%;
-            background: rgba(0, 0, 0, 0.15);
+            background: rgba(0, 0, 0, 0.12);
             transform: scale(0);
             animation: ripple-anim 0.6s linear;
             pointer-events: none;
@@ -113,7 +113,7 @@
         /* Scroll Reveal Animation Styling */
         .reveal-item {
             opacity: 0;
-            transform: translateY(35px);
+            transform: translateY(30px);
             transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
             will-change: opacity, transform;
         }
@@ -123,7 +123,6 @@
             transform: translateY(0);
         }
 
-        /* Delays untuk elemen berurutan */
         .delay-1 { transition-delay: 0.15s; }
         .delay-2 { transition-delay: 0.3s; }
         .delay-3 { transition-delay: 0.45s; }
@@ -147,7 +146,7 @@
 </head>
 <body class="antialiased selection:bg-black selection:text-white">
 
-    <!-- Canvas Snowfall (Crystal Snowflake Depth of Field) -->
+    <!-- Lightweight Crystal Snowfall Canvas -->
     <canvas id="snowCanvas"></canvas>
     
     <!-- Mountain Silhouette Overlay -->
@@ -396,8 +395,6 @@
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
                         entry.target.classList.add("active");
-                        // opsional: unobserve agar animasi hanya berjalan sekali saat di-scroll
-                        // revealObserver.unobserve(entry.target);
                     }
                 });
             }, observerOptions);
@@ -430,7 +427,7 @@
             let typingSpeed = isDeleting ? 50 : 100;
 
             if (!isDeleting && charIndex === currentRole.length) {
-                typingSpeed = 2000; // Pause at end
+                typingSpeed = 2000;
                 isDeleting = true;
             } else if (isDeleting && charIndex === 0) {
                 isDeleting = false;
@@ -477,7 +474,7 @@
             }, 300);
         }
 
-        // Canvas Crystal Snowflake Animation (Depth of Field)
+        // Optimized Lightweight Crystal Snowflake Animation
         const canvas = document.getElementById("snowCanvas");
         const ctx = canvas.getContext("2d");
 
@@ -489,31 +486,28 @@
         resizeCanvas();
 
         const snowflakes = [];
-        const numFlakes = 60;
+        const numFlakes = 25; // Lightweight count for high performance
 
-        // Function to draw 6-arm crystal snowflake
-        function drawSnowflake(x, y, radius, blur, opacity, rotation) {
+        function drawCrystalFlake(x, y, radius, opacity, rotation) {
             ctx.save();
             ctx.translate(x, y);
             ctx.rotate(rotation);
-            ctx.filter = `blur(${blur}px)`;
             ctx.strokeStyle = `rgba(30, 30, 30, ${opacity})`;
-            ctx.lineWidth = radius * 0.25;
+            ctx.lineWidth = 1.2;
             ctx.lineCap = "round";
 
-            // Draw 6 main arms
+            // Draw 6 simple arms
             for (let i = 0; i < 6; i++) {
                 ctx.beginPath();
                 ctx.moveTo(0, 0);
                 ctx.lineTo(0, -radius);
                 ctx.stroke();
 
-                // Draw branches
                 ctx.beginPath();
                 ctx.moveTo(0, -radius * 0.5);
-                ctx.lineTo(radius * 0.3, -radius * 0.75);
+                ctx.lineTo(radius * 0.35, -radius * 0.85);
                 ctx.moveTo(0, -radius * 0.5);
-                ctx.lineTo(-radius * 0.3, -radius * 0.75);
+                ctx.lineTo(-radius * 0.35, -radius * 0.85);
                 ctx.stroke();
 
                 ctx.rotate(Math.PI / 3);
@@ -525,13 +519,12 @@
             snowflakes.push({
                 x: Math.random() * canvas.width,
                 y: Math.random() * canvas.height,
-                radius: Math.random() * 8 + 4,
-                speedY: Math.random() * 0.7 + 0.3,
-                speedX: (Math.random() - 0.5) * 0.4,
+                radius: Math.random() * 6 + 4,
+                speedY: Math.random() * 0.6 + 0.3,
+                speedX: (Math.random() - 0.5) * 0.3,
                 rotation: Math.random() * Math.PI * 2,
-                rotSpeed: (Math.random() - 0.5) * 0.02,
-                blur: Math.random() * 3.5 + 0.5, // Depth of field blur simulation
-                opacity: Math.random() * 0.45 + 0.15
+                rotSpeed: (Math.random() - 0.5) * 0.015,
+                opacity: Math.random() * 0.35 + 0.15
             });
         }
 
@@ -539,9 +532,8 @@
             ctx.clearRect(0, 0, canvas.width, canvas.height);
             
             snowflakes.forEach(flake => {
-                drawSnowflake(flake.x, flake.y, flake.radius, flake.blur, flake.opacity, flake.rotation);
+                drawCrystalFlake(flake.x, flake.y, flake.radius, flake.opacity, flake.rotation);
 
-                // Update position & rotation
                 flake.y += flake.speedY;
                 flake.x += flake.speedX;
                 flake.rotation += flake.rotSpeed;
