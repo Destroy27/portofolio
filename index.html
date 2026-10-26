@@ -23,6 +23,8 @@ section h2{font-family:'JetBrains Mono',monospace;font-size:0.75rem;text-transfo
 .skills{display:flex;flex-wrap:wrap;gap:0.75rem}
 .skills span{border:1px solid var(--line);padding:0.35rem 0.75rem;border-radius:999px;font-family:'JetBrains Mono',monospace;font-size:0.8rem;color:var(--fg)}
 footer{margin-top:16rem;padding-top:4rem;border-top:1px solid var(--line);display:flex;justify-content:space-between;color:var(--muted);font-family:'JetBrains Mono',monospace;font-size:0.8rem}
+@keyframes idle{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
+header h1{animation:idle 6s ease-in-out infinite;display:inline-block}
 @media(max-width:600px){main{padding:4rem 1.2rem}header{margin-bottom:6rem}}
 </style>
 </head>
@@ -57,6 +59,16 @@ footer{margin-top:16rem;padding-top:4rem;border-top:1px solid var(--line);displa
 <h3>Portofolio Ini</h3>
 <p class="meta">HTML · CSS · Monokrom</p>
 <p>Dibuat langsung dari referensi desain minimal. Tidak ada warna selain hitam, abu-abu, dan putih. Xixi.</p>
+</div>
+<div class="project">
+<h3>Jarco — Jaringan Coffee</h3>
+<p class="meta">POS · Web · 2026</p>
+<p>Brand coffee shop bernama Jaringan Coffee (disingkat Jarco). Membangun sistem POS dan identitas digital untuk jaringan kedai. Minimal, cepat, dan tidak berisik.</p>
+</div>
+<div class="project">
+<h3>Jurnal 7 KAIH</h3>
+<p class="meta">Artikel · SD N 4 Jehem · 2026</p>
+<p>Tujuh kebiasaan anak Indonesia hebat. Ditulis untuk sekolah dasar dan disimpan dengan Cloudflare D1. Penulisan sederhana, pesan jelas.</p>
 </div>
 </section>
 
