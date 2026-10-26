@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dary — Programmer</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;500;800&family=JetBrains+Mono:wght@300;500&display=swap');
+:root{--bg:#0a0a0a;--fg:#e6e6e6;--muted:#888;--line:#222;--accent:#fff;}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--fg);font-family:'Inter',system-ui,sans-serif;line-height:1.6;letter-spacing:-0.01em}
+main{max-width:820px;margin:0 auto;padding:8rem 2rem}
+header{margin-bottom:12rem}
+header h1{font-size:clamp(3.5rem,10vw,7rem);font-weight:800;line-height:0.92;letter-spacing:-0.06em;color:var(--accent);font-family:'JetBrains Mono',monospace}
+header .sub{margin-top:1.5rem;font-size:1.1rem;color:var(--muted);font-weight:300}
+section{margin-bottom:10rem;border-top:1px solid var(--line);padding-top:4rem}
+section h2{font-family:'JetBrains Mono',monospace;font-size:0.75rem;text-transform:uppercase;letter-spacing:0.12em;color:var(--muted);margin-bottom:2.5rem}
+.project{margin-bottom:4rem}
+.project h3{font-size:1.35rem;font-weight:500;margin-bottom:0.25rem;color:var(--accent)}
+.project .meta{font-family:'JetBrains Mono',monospace;font-size:0.8rem;color:var(--muted);margin-bottom:1rem}
+.project p{color:#ccc;font-size:0.95rem;line-height:1.7}
+.skills{display:flex;flex-wrap:wrap;gap:0.75rem}
+.skills span{border:1px solid var(--line);padding:0.35rem 0.75rem;border-radius:999px;font-family:'JetBrains Mono',monospace;font-size:0.8rem;color:var(--fg)}
+footer{margin-top:16rem;padding-top:4rem;border-top:1px solid var(--line);display:flex;justify-content:space-between;color:var(--muted);font-family:'JetBrains Mono',monospace;font-size:0.8rem}
+@media(max-width:600px){main{padding:4rem 1.2rem}header{margin-bottom:6rem}}
+</style>
+</head>
+<body>
+<main>
+<header>
+<h1>DARY<br>PROGRAMER</h1>
+<p class="sub">Portofolio monokrom — R, analisis bibliometrik, desain minimal.</p>
+</header>
+
+<section id="tentang">
+<h2>01 / Tentang</h2>
+<p>Saya belajar R dan praktikum bibliometrik. Saya suka desain bersih, kode rapi, dan warna yang tidak berisik. Saya juga berlatih membuat portofolio ini — xixi.</p>
+</section>
+
+<section id="skill">
+<h2>02 / Keterampilan</h2>
+<div class="skills">
+<span>R</span><span>Bibliometrix</span><span>HTML / CSS</span><span>Portofolio</span>
+<span>Analisis Data</span><span>Desain Monokrom</span><span>Pemula</span>
+</div>
+</section>
+
+<section id="proyek">
+<h2>03 / Proyek</h2>
+<div class="project">
+<h3>Praktikum Bibliometrik</h3>
+<p class="meta">R · bibliometrix · 2026</p>
+<p>Analisis topik “computational thinking” menggunakan data Dimensions. Membuat peta tematik dan tabel silang untuk menemukan celah penelitian.</p>
+</div>
+<div class="project">
+<h3>Portofolio Ini</h3>
+<p class="meta">HTML · CSS · Monokrom</p>
+<p>Dibuat langsung dari referensi desain minimal. Tidak ada warna selain hitam, abu-abu, dan putih. Xixi.</p>
+</div>
+</section>
+
+<section id="kontak">
+<h2>04 / Kontak</h2>
+<p>Jika kamu ingin latihan lagi atau membuat desain baru, kirim pesan lewat chat ini. Saya siap — tapi laptop harus tetap hidup.</p>
+</section>
+
+<footer>
+<span>Dary</span>
+<span>Monokrom</span>
+</footer>
+</main>
+</body>
+</html>
