@@ -1,136 +1,493 @@
 <!DOCTYPE html>
-<html lang="id" class="dark scroll-smooth">
+<html lang="id">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Dary — Full Stack Developer & Mahasiswa Informatika</title>
-<script src="https://cdn.tailwindcss.com"></script>
-<script>tailwind.config={darkMode:'class',theme:{extend:{colors:{ice:{50:'#f0f9ff',100:'#e0f2fe',200:'#bae6fd',300:'#7dd3fc',400:'#38bdf8',500:'#0ea5e9',600:'#0284c7',700:'#0369a1',800:'#075985',900:'#0c4a6e',950:'#082f49'},glacier:{800:'#091d2e',900:'#040d16',950:'#01060c'}},fontFamily:{sans:['Inter','sans-serif']}}}}</script>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-<style>
-::-webkit-scrollbar{width:8px} ::-webkit-scrollbar-track{background:#01060c} ::-webkit-scrollbar-thumb{background:rgba(56,189,248,0.25);border-radius:4px;border:1px solid rgba(255,255,255,0.1)} ::-webkit-scrollbar-thumb:hover{background:rgba(56,189,248,0.5)}
-.glacier-bg{position:fixed;inset:0;z-index:0;background:radial-gradient(circle at 50% 20%,#0c334e 0%,#041220 50%,#01060c 90%);overflow:hidden;pointer-events:none}
-.iceberg-svg{position:absolute;bottom:0;width:100%;height:auto;min-height:45vh;object-fit:cover;filter:drop-shadow(0 0 35px rgba(14,165,233,0.25))}
-.ice-fog{position:absolute;inset:0;background:radial-gradient(ellipse at bottom,rgba(56,189,248,0.12) 0%,rgba(2,6,23,0.85) 75%);pointer-events:none}
-.aurora-glow{position:absolute;top:-10%;left:50%;transform:translateX(-50%);width:80vw;height:40vh;background:radial-gradient(ellipse,rgba(56,189,248,0.18) 0%,rgba(14,165,233,0.05) 50%,transparent 80%);filter:blur(60px);animation:auroraPulse 10s ease-in-out infinite alternate}
-@keyframes auroraPulse{0%{opacity:0.5;transform:translateX(-50%) scale(0.9)}100%{opacity:1;transform:translateX(-50%) scale(1.1)}}
-.liquid-glass{position:relative;background:linear-gradient(135deg,rgba(255,255,255,0.08) 0%,rgba(255,255,255,0.02) 40%,rgba(14,165,233,0.05) 100%);backdrop-filter:blur(20px) saturate(180%);-webkit-backdrop-filter:blur(20px) saturate(180%);border-radius:1.5rem;border:1px solid rgba(255,255,255,0.18);box-shadow:0 20px 50px rgba(0,0,0,0.5),inset 0 1px 1px rgba(255,255,255,0.4),inset 0 -2px 10px rgba(14,165,233,0.15);transition:all 0.4s cubic-bezier(0.16,1,0.3,1);overflow:hidden}
-.liquid-glass:hover{transform:translateY(-5px) scale(1.01);border-color:rgba(125,211,252,0.45);box-shadow:0 30px 60px rgba(0,0,0,0.6),0 0 30px rgba(56,189,248,0.25),inset 0 1px 2px rgba(255,255,255,0.6),inset 0 -2px 15px rgba(14,165,233,0.3)}
-.liquid-pill{background:rgba(255,255,255,0.06);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border:1px solid rgba(255,255,255,0.2);box-shadow:inset 0 1px 0 rgba(255,255,255,0.3)}
-.liquid-btn{position:relative;background:linear-gradient(135deg,rgba(56,189,248,0.9) 0%,rgba(14,165,233,0.9) 100%);box-shadow:0 0 25px rgba(56,189,248,0.4),inset 0 1px 1px rgba(255,255,255,0.6);transition:all 0.3s ease}
-.liquid-btn:hover{box-shadow:0 0 35px rgba(56,189,248,0.7),inset 0 1px 2px rgba(255,255,255,0.9);transform:translateY(-2px)}
-#snowCanvas{position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:2}
-.typewriter-cursor{display:inline-block;width:3px;background-color:#38bdf8;box-shadow:0 0 10px #38bdf8;animation:blink 0.7s infinite}
-@keyframes blink{0%,100%{opacity:1}50%{opacity:0}}
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dary — Full Stack Developer & Mahasiswa</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+                        serif: ['"Playfair Display"', 'serif'],
+                    },
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Custom Liquid Glass & Monochromatic Styling */
+        body {
+            background-color: #FFFFFF;
+            color: #111111;
+            overflow-x: hidden;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+
+        .liquid-glass {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(0, 0, 0, 0.08);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.04), inset 0 1px 0 rgba(255, 255, 255, 0.8);
+        }
+
+        .liquid-glass-card {
+            background: rgba(255, 255, 255, 0.65);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(0, 0, 0, 0.06);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.03);
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .liquid-glass-card:hover {
+            transform: translateY(-6px);
+            border-color: rgba(0, 0, 0, 0.2);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+        }
+
+        /* Monochromatic Text Gradient */
+        .text-gradient {
+            background: linear-gradient(135deg, #111111 0%, #444444 50%, #222222 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* Click Ripple Effect */
+        .ripple {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(0, 0, 0, 0.15);
+            transform: scale(0);
+            animation: ripple-anim 0.6s linear;
+            pointer-events: none;
+        }
+
+        @keyframes ripple-anim {
+            to {
+                transform: scale(4);
+                opacity: 0;
+            }
+        }
+
+        /* Mountain Silhouette Background */
+        .mountain-bg {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 35vh;
+            background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 320'%3E%3Cpath fill='%23111111' fill-opacity='0.03' d='M0,192L48,181.3C96,171,192,149,288,160C384,171,480,213,576,218.7C672,224,768,192,864,165.3C960,139,1056,117,1152,133.3C1248,150,1344,203,1392,229.3L1440,256L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z'%3E%3C/path%3E%3C/svg%3E") no-repeat bottom;
+            background-size: cover;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .content-layer {
+            position: relative;
+            z-index: 10;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #cccccc;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #999999;
+        }
+    </style>
 </head>
-<body class="bg-glacier-950 text-ice-100 font-sans antialiased relative selection:bg-ice-500 selection:text-white overflow-x-hidden">
-<div class="glacier-bg"><div class="aurora-glow"></div><div class="ice-fog"></div>
-<svg class="iceberg-svg" viewBox="0 0 1440 600" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
-<path d="M0 600L180 380L340 460L520 280L720 420L920 260L1120 400L1280 320L1440 480V600H0Z" fill="url(#distantGlacier)" opacity="0.4"/>
-<path d="M0 600L120 420L280 500L460 310L680 480L880 290L1080 440L1260 340L1440 520V600H0Z" fill="url(#midGlacier)" opacity="0.75"/>
-<path d="M-50 600L90 460L210 520L380 360L540 480L760 310L980 490L1160 370L1340 510L1490 420V600H-50Z" fill="url(#foreGlacier)"/>
-<defs><linearGradient id="distantGlacier" x1="720" y1="260" x2="720" y2="600" gradientUnits="userSpaceOnUse"><stop stop-color="#38bdf8" stop-opacity="0.3"/><stop offset="1" stop-color="#040d16"/></linearGradient>
-<linearGradient id="midGlacier" x1="720" y1="290" x2="720" y2="600" gradientUnits="userSpaceOnUse"><stop stop-color="#0ea5e9" stop-opacity="0.5"/><stop offset="0.6" stop-color="#082f49" stop-opacity="0.9"/><stop offset="1" stop-color="#01060c"/></linearGradient>
-<linearGradient id="foreGlacier" x1="720" y1="310" x2="720" y2="600" gradientUnits="userSpaceOnUse"><stop stop-color="#1e3a8a" stop-opacity="0.6"/><stop offset="0.3" stop-color="#075985" stop-opacity="0.8"/><stop offset="0.8" stop-color="#040d16"/><stop offset="1" stop-color="#01060c"/></linearGradient></defs>
-</svg></div>
-<canvas id="snowCanvas"></canvas>
-<header class="fixed top-0 left-0 right-0 z-50" id="navbar">
-<div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
-<a href="#hero" class="text-xl font-extrabold tracking-wider text-white flex items-center gap-3 group"><span class="w-10 h-10 rounded-xl liquid-glass flex items-center justify-center text-ice-300 group-hover:rotate-12 transition shadow-[0_0_20px_rgba(56,189,248,0.3)]"><i class="fa-solid fa-snowflake text-base"></i></span><span id="navBrandName">DARY<span class="text-ice-400">.DEV</span></span></a>
-<nav class="hidden md:flex items-center gap-2 px-4 py-2 rounded-full liquid-glass border-white/10"><a href="#about" class="px-4 py-1.5 text-sm font-medium text-ice-200 hover:text-white hover:bg-white/5 rounded-full transition">Tentang</a><a href="#skills" class="px-4 py-1.5 text-sm font-medium text-ice-200 hover:text-white hover:bg-white/5 rounded-full transition">Keahlian</a><a href="#projects" class="px-4 py-1.5 text-sm font-medium text-ice-200 hover:text-white hover:bg-white/5 rounded-full transition">Karya</a><a href="#contact" class="px-4 py-1.5 text-sm font-medium text-ice-200 hover:text-white hover:bg-white/5 rounded-full transition">Kontak</a></nav>
-<div class="hidden md:flex items-center gap-3"><button onclick="toggleEditorModal()" class="px-5 py-2.5 rounded-full liquid-glass text-ice-300 hover:text-white font-semibold text-xs border-ice-400/40 flex items-center gap-2 hover:bg-white/10 transition"><i class="fa-solid fa-pen-to-square"></i><span>Edit Data & Foto</span></button><a href="#contact" class="px-6 py-2.5 rounded-full liquid-btn text-midnight-950 font-bold text-sm">Hubungi</a></div>
-<div class="flex md:hidden items-center gap-2"><button onclick="toggleEditorModal()" class="w-10 h-10 rounded-xl liquid-glass text-ice-300 flex items-center justify-center"><i class="fa-solid fa-pen-to-square text-base"></i></button><button id="menuBtn" class="w-10 h-10 rounded-xl liquid-glass text-ice-200 hover:text-white flex items-center justify-center"><i class="fa-solid fa-bars text-lg"></i></button></div>
-</div>
-<div id="mobileMenu" class="hidden md:hidden max-w-sm mx-auto px-6 py-4 mt-2 rounded-2xl liquid-glass flex flex-col gap-3 border-white/20"><a href="#about" class="mobile-link text-ice-200 hover:text-ice-400 py-2 text-center font-medium">Tentang</a><a href="#skills" class="mobile-link text-ice-200 hover:text-ice-400 py-2 text-center font-medium">Keahlian</a><a href="#projects" class="mobile-link text-ice-200 hover:text-ice-400 py-2 text-center font-medium">Karya</a><a href="#contact" class="mobile-link text-ice-200 hover:text-ice-400 py-2 text-center font-medium">Kontak</a></div>
-</header>
+<body class="antialiased selection:bg-black selection:text-white">
 
-<main class="relative z-10">
-<section id="hero" class="min-h-screen flex items-center justify-center pt-20 px-6 relative">
-<div class="max-w-4xl mx-auto text-center">
-<div class="inline-flex items-center gap-2.5 px-5 py-2 rounded-full liquid-pill text-xs sm:text-sm font-semibold text-ice-300 mb-8 border border-ice-400/30"><span class="w-2.5 h-2.5 rounded-full bg-ice-400 animate-ping"></span><span id="displayBadge">Fokus Kenyamanan Pengguna, Dokumentasi Praktikum & Publikasi Ilmiah</span></div>
-<h1 class="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-black text-white tracking-tight mb-6 leading-tight">Halo, Saya <span id="displayName" class="bg-gradient-to-r from-white via-ice-200 to-ice-400 bg-clip-text text-transparent drop-shadow-[0_0_35px_rgba(56,189,248,0.5)]">Dary</span></h1>
-<div class="text-xl sm:text-2xl md:text-3xl font-semibold text-ice-300 h-16 flex items-center justify-center gap-2"><span id="typewriter" class="text-white drop-shadow-[0_0_12px_rgba(255,255,255,0.4)]"></span><span class="typewriter-cursor h-8"></span></div>
-<p id="displayHeroSub" class="max-w-2xl mx-auto text-ice-200/80 text-base sm:text-lg mb-10 leading-relaxed font-light">Mendedikasikan fokus pada kenyamanan pengguna, dokumentasi praktikum terstruktur, serta publikasi ilmiah yang berdampak.</p>
-<div class="flex flex-col sm:flex-row items-center justify-center gap-5"><a href="#projects" class="w-full sm:w-auto px-8 py-4 rounded-2xl liquid-btn text-midnight-950 font-extrabold flex items-center justify-center gap-3"><span>Lihat Portfolio</span><i class="fa-solid fa-arrow-right text-xs"></i></a><a href="#contact" class="w-full sm:w-auto px-8 py-4 rounded-2xl liquid-glass text-white font-semibold hover:bg-white/10 flex items-center justify-center gap-2"><span>Hubungi Saya</span></a></div>
-</div>
-</section>
+    <!-- Canvas Snowfall (Depth of Field Monochromatic) -->
+    <canvas id="snowCanvas"></canvas>
+    
+    <!-- Mountain Silhouette Overlay -->
+    <div class="mountain-bg"></div>
 
-<section id="about" class="py-28 px-6 relative">
-<div class="max-w-6xl mx-auto">
-<div class="text-center mb-16"><h2 class="text-xs uppercase tracking-widest text-ice-400 font-bold mb-3">Profil & Dedikasi</h2><h3 class="text-3xl sm:text-5xl font-extrabold text-white">Tentang Saya & Nilai Kerja</h3></div>
-<div class="grid grid-cols-1 md:grid-cols-12 gap-8 items-stretch">
-<div class="md:col-span-5 flex"><div class="liquid-glass p-8 rounded-3xl w-full flex flex-col items-center justify-center text-center">
-<div class="relative w-44 h-44 mb-6 rounded-full p-1.5 bg-gradient-to-tr from-ice-400 via-white/50 to-ice-600 shadow-[0_0_30px_rgba(56,189,248,0.5)] overflow-hidden"><img id="displayAvatar" src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&w=600&q=80" alt="Dary" class="w-full h-full object-cover rounded-full"></div>
-<h4 id="displayAboutName" class="text-2xl font-extrabold text-white mb-1">Dary</h4><p id="displayAboutFullName" class="text-xs text-ice-300 font-mono mb-2">I Gede Pasek Ary Sugiantara</p><p id="displayAboutRole" class="text-sm font-medium text-ice-400 mb-6">Full Stack Developer & Mahasiswa Informatika</p>
-<div class="flex justify-center gap-3 w-full"><a id="displayGithub" href="https://github.com/Destroy27/portofolio" target="_blank" class="w-11 h-11 rounded-2xl liquid-glass flex items-center justify-center text-ice-200 hover:text-white hover:scale-110 transition"><i class="fa-brands fa-github text-lg"></i></a><a id="displayInstagram" href="https://instagram.com/pasek_ary" target="_blank" class="w-11 h-11 rounded-2xl liquid-glass flex items-center justify-center text-ice-200 hover:text-white hover:scale-110 transition"><i class="fa-brands fa-instagram text-lg"></i></a><a id="displayEmail" href="mailto:pasekary16@gmail.com" class="w-11 h-11 rounded-2xl liquid-glass flex items-center justify-center text-ice-200 hover:text-white hover:scale-110 transition"><i class="fa-solid fa-envelope text-lg"></i></a></div>
-</div></div>
-<div class="md:col-span-7 flex"><div class="liquid-glass p-8 md:p-10 rounded-3xl w-full flex flex-col justify-between">
-<div><h4 id="displayAboutTitle" class="text-2xl md:text-3xl font-extrabold text-white mb-6">Membangun Produk Digital yang Nyaman, Intuitif & Handal</h4>
-<p id="displayAboutBio1" class="text-ice-200/90 leading-relaxed mb-6 font-light text-base">Berkomitmen membangun produk digital yang berfokus pada kenyamanan dan pengalaman pengguna. Melalui proyek seperti Web Jaringan Coffee (JARCO) dan Jurnal KIAH, Dary memadukan desain intuitif, dokumentasi yang jelas, serta performa sistem yang handal dan konsisten.</p><p id="displayAboutBio2" class="text-ice-200/90 leading-relaxed font-light text-base">Setiap detail aplikasi dirancang agar siapa pun yang menggunakannya merasa mudah, efektif, dan percaya diri, baik untuk skala praktikum, aplikasi komersial, maupun repositori ilmiah.</p></div>
-<div class="grid grid-cols-3 gap-4 mt-8 pt-8 border-t border-white/10 text-center"><div class="liquid-glass py-4 rounded-2xl"><div id="statProjects" class="text-2xl md:text-4xl font-black text-white">12</div><div class="text-xs text-ice-300 mt-1 font-medium">Proyek Selesai</div></div><div class="liquid-glass py-4 rounded-2xl"><div id="statExp" class="text-2xl md:text-4xl font-black text-white">3</div><div class="text-xs text-ice-300 mt-1 font-medium">Thn Pengalaman</div></div><div class="liquid-glass py-4 rounded-2xl"><div id="statQuality" class="text-2xl md:text-4xl font-black text-white">92%</div><div class="text-xs text-ice-300 mt-1 font-medium">Tingkat Kepuasan</div></div></div>
-</div></div>
-</div></div>
-</section>
+    <div class="content-layer min-h-screen flex flex-col justify-between">
+        
+        <!-- Navigation Bar -->
+        <header class="w-full py-6 px-6 md:px-12 flex justify-between items-center liquid-glass sticky top-0 z-50">
+            <div class="flex items-center space-x-3">
+                <span class="w-3 h-3 bg-black rounded-full animate-pulse"></span>
+                <span class="font-bold tracking-widest text-lg md:text-xl uppercase font-serif">Dary.</span>
+            </div>
+            
+            <nav class="hidden md:flex items-center space-x-8 text-sm font-medium tracking-wide">
+                <a href="#tentang" class="hover:opacity-60 transition-opacity">Tentang</a>
+                <a href="#keahlian" class="hover:opacity-60 transition-opacity">Keahlian</a>
+                <a href="#karya" class="hover:opacity-60 transition-opacity">Karya</a>
+                <a href="#kontak" class="hover:opacity-60 transition-opacity">Kontak</a>
+            </nav>
 
-<section id="skills" class="py-28 px-6 relative"><div class="max-w-6xl mx-auto"><div class="text-center mb-16"><h2 class="text-xs uppercase tracking-widest text-ice-400 font-bold mb-3">Kompetensi Utama</h2><h3 class="text-3xl sm:text-5xl font-extrabold text-white">Keahlian & Keunggulan</h3></div><div id="skillsGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6"></div></div></section>
+            <a href="#kontak" class="bg-black text-white px-5 py-2.5 rounded-full text-xs md:text-sm font-semibold tracking-wider hover:bg-neutral-800 transition-all shadow-md">
+                Hubungi Saya
+            </a>
+        </header>
 
-<section id="projects" class="py-28 px-6 relative"><div class="max-w-6xl mx-auto"><div class="text-center mb-16"><h2 class="text-xs uppercase tracking-widest text-ice-400 font-bold mb-3">Portofolio Terpilih</h2><h3 class="text-3xl sm:text-5xl font-extrabold text-white">Karya & Proyek Unggulan</h3></div><div id="projectsGrid" class="grid grid-cols-1 md:grid-cols-2 gap-8"></div></div></section>
+        <!-- Main Content -->
+        <main class="flex-grow">
+            
+            <!-- Hero Section -->
+            <section class="max-w-5xl mx-auto px-6 pt-16 pb-24 text-center flex flex-col items-center">
+                
+                <!-- Foto Profil di Tengah (Di Atas Teks) -->
+                <div class="relative mb-8 group">
+                    <div class="absolute -inset-1 rounded-full bg-gradient-to-r from-neutral-300 via-neutral-500 to-neutral-200 opacity-70 blur-md group-hover:opacity-100 transition duration-500"></div>
+                    <div class="relative w-36 h-36 md:w-44 md:h-44 rounded-full overflow-hidden liquid-glass border-4 border-white shadow-2xl">
+                        <img src="./WhatsApp Image 2026-10-26 at 18.45.51.jpeg" alt="Dary" class="w-full h-full object-cover object-center scale-105 group-hover:scale-100 transition-transform duration-500" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=500&auto=format&fit=crop&q=60';">
+                    </div>
+                    <div class="absolute bottom-2 right-2 bg-black text-white text-[10px] uppercase font-bold tracking-widest px-3 py-1 rounded-full shadow-lg border border-white/20">
+                        Active
+                    </div>
+                </div>
 
-<section id="contact" class="py-28 px-6 relative"><div class="max-w-4xl mx-auto"><div class="text-center mb-16"><h2 class="text-xs uppercase tracking-widest text-ice-400 font-bold mb-3">Kontak & Kolaborasi</h2><h3 class="text-3xl sm:text-5xl font-extrabold text-white">Hubungi Dary</h3></div>
-<div class="liquid-glass p-8 md:p-12 rounded-3xl relative">
-<form id="contactForm" class="space-y-6" onsubmit="event.preventDefault(); document.getElementById('formMessage').classList.remove('hidden'); this.reset(); setTimeout(()=>document.getElementById('formMessage').classList.add('hidden'),5000);">
-<div class="grid grid-cols-1 md:grid-cols-2 gap-6"><input type="text" required class="w-full px-4 py-3.5 rounded-2xl bg-midnight-950/50 border border-white/10 text-white placeholder-ice-500/50 focus:outline-none focus:border-ice-400" placeholder="Nama lengkap anda"><input type="email" required class="w-full px-4 py-3.5 rounded-2xl bg-midnight-950/50 border border-white/10 text-white placeholder-ice-500/50 focus:outline-none focus:border-ice-400" placeholder="email@domain.com"></div>
-<input type="text" required class="w-full px-4 py-3.5 rounded-2xl bg-midnight-950/50 border border-white/10 text-white placeholder-ice-500/50 focus:outline-none focus:border-ice-400" placeholder="Peluang Kerja / Proyek / Diskusi">
-<textarea rows="5" required class="w-full px-4 py-3.5 rounded-2xl bg-midnight-950/50 border border-white/10 text-white placeholder-ice-500/50 focus:outline-none focus:border-ice-400 resize-none" placeholder="Tuliskan detail pesan Anda di sini..."></textarea>
-<button type="submit" class="w-full py-4 rounded-2xl liquid-btn text-midnight-950 font-extrabold">Kirim Pesan</button>
-</form>
-<div id="formMessage" class="hidden mb-6 p-4 rounded-2xl liquid-glass border-ice-400/40 text-ice-200 text-sm flex items-center gap-3"><i class="fa-solid fa-circle-check text-ice-400 text-lg"></i><span>Pesan Anda telah berhasil dikirim! Dary akan segera merespons Anda.</span></div>
-</div>
-</div>
-</section>
-</main>
+                <!-- Badge Status -->
+                <div class="inline-flex items-center space-x-2 px-4 py-1.5 rounded-full liquid-glass-card mb-6 text-xs md:text-sm font-medium">
+                    <span class="w-2 h-2 rounded-full bg-black"></span>
+                    <span>Fokus Kenyamanan Pengguna & Dokumentasi Terstruktur</span>
+                </div>
 
-<div id="editorModal" class="fixed inset-0 z-50 hidden flex items-center justify-center p-4 bg-black/80 backdrop-blur-lg">
-<div class="liquid-glass p-6 sm:p-8 rounded-3xl max-w-3xl w-full max-h-[90vh] overflow-y-auto relative border-white/30 text-white shadow-2xl">
-<div class="flex items-center justify-between border-b border-white/10 pb-4 mb-6">
-<div class="flex items-center gap-3"><span class="w-10 h-10 rounded-xl liquid-glass flex items-center justify-center text-ice-300"><i class="fa-solid fa-sliders text-base"></i></span><div><h3 class="text-xl font-extrabold text-white">Editor Data & Upload Foto</h3><p class="text-xs text-ice-300 font-light">Ubah informasi dan upload foto profil Dary secara langsung</p></div></div>
-<button onclick="toggleEditorModal()" class="w-10 h-10 rounded-xl liquid-glass text-ice-300 hover:text-white flex items-center justify-center"><i class="fa-solid fa-xmark text-lg"></i></button>
-</div>
-<form id="editorForm" onsubmit="saveCustomData(event)" class="space-y-6">
-<div class="space-y-4"><h4 class="text-xs font-bold uppercase tracking-widest text-ice-400 border-b border-white/10 pb-2">1. Profil & Foto</h4>
-<div class="grid grid-cols-1 sm:grid-cols-2 gap-4"><input type="text" id="inputName" class="w-full px-3.5 py-2.5 rounded-xl bg-midnight-950/80 border border-white/15 text-sm text-white focus:outline-none focus:border-ice-400" placeholder="Nama panggilan"><input type="text" id="inputRole" class="w-full px-3.5 py-2.5 rounded-xl bg-midnight-950/80 border border-white/15 text-sm text-white focus:outline-none focus:border-ice-400" placeholder="Gelar / Peran"></div>
-<div class="grid grid-cols-1 sm:grid-cols-2 gap-4 items-center"><input type="file" id="inputAvatarFile" accept="image/*" class="w-full text-xs text-ice-300 file:mr-3 file:py-2 file:px-4 file:rounded-xl file:border-0 file:text-xs file:font-semibold file:bg-ice-500/20 file:text-ice-300 hover:file:bg-ice-500/30 cursor-pointer"><input type="text" id="inputAvatarUrl" placeholder="https://..." class="w-full px-3.5 py-2.5 rounded-xl bg-midnight-950/80 border border-white/15 text-sm text-white focus:outline-none focus:border-ice-400" placeholder="Atau Link URL Gambar"></div>
-<input type="text" id="inputRolesList" class="w-full px-3.5 py-2.5 rounded-xl bg-midnight-950/80 border border-white/15 text-sm text-white focus:outline-none focus:border-ice-400" placeholder="Teks animasi, pisahkan dengan koma"></div>
-<div class="space-y-4"><h4 class="text-xs font-bold uppercase tracking-widest text-ice-400 border-b border-white/10 pb-2">2. Bio & Deskripsi</h4>
-<textarea id="inputHeroSub" rows="2" class="w-full px-3.5 py-2.5 rounded-xl bg-midnight-950/80 border border-white/15 text-sm text-white focus:outline-none focus:border-ice-400 resize-none" placeholder="Sub-header hero"></textarea>
-<textarea id="inputBio1" rows="3" class="w-full px-3.5 py-2.5 rounded-xl bg-midnight-950/80 border border-white/15 text-sm text-white focus:outline-none focus:border-ice-400 resize-none" placeholder="Bio utama"></textarea></div>
-<div class="space-y-4"><h4 class="text-xs font-bold uppercase tracking-widest text-ice-400 border-b border-white/10 pb-2">3. Kontak & Statistik</h4>
-<div class="grid grid-cols-1 sm:grid-cols-3 gap-4"><input type="text" id="inputGithub" class="w-full px-3.5 py-2 rounded-xl bg-midnight-950/80 border border-white/15 text-sm text-white focus:outline-none focus:border-ice-400" placeholder="GitHub URL"><input type="text" id="inputInstagram" class="w-full px-3.5 py-2 rounded-xl bg-midnight-950/80 border border-white/15 text-sm text-white focus:outline-none focus:border-ice-400" placeholder="Instagram"><input type="text" id="inputEmail" class="w-full px-3.5 py-2 rounded-xl bg-midnight-950/80 border border-white/15 text-sm text-white focus:outline-none focus:border-ice-400" placeholder="Email"></div>
-<div class="grid grid-cols-3 gap-4"><input type="text" id="inputStatProjects" class="w-full px-3.5 py-2 rounded-xl bg-midnight-950/80 border border-white/15 text-sm text-white text-center focus:outline-none focus:border-ice-400" placeholder="Proyek"><input type="text" id="inputStatExp" class="w-full px-3.5 py-2 rounded-xl bg-midnight-950/80 border border-white/15 text-sm text-white text-center focus:outline-none focus:border-ice-400" placeholder="Thn Exp"><input type="text" id="inputStatQuality" class="w-full px-3.5 py-2 rounded-xl bg-midnight-950/80 border border-white/15 text-sm text-white text-center focus:outline-none focus:border-ice-400" placeholder="Kepuasan"></div></div>
-<div class="pt-4 border-t border-white/10 flex flex-wrap items-center justify-between gap-4"><button type="button" onclick="loadDefaultData()" class="px-4 py-2.5 rounded-xl liquid-glass text-xs font-semibold text-ice-300 hover:text-white transition"><i class="fa-solid fa-rotate-left mr-1.5"></i> Reset Data Foto</button><div class="flex items-center gap-3"><button type="button" onclick="toggleEditorModal()" class="px-5 py-2.5 rounded-xl liquid-glass text-xs font-semibold text-ice-200 hover:text-white">Batal</button><button type="submit" class="px-6 py-2.5 rounded-xl liquid-btn text-midnight-950 font-extrabold text-xs">Simpan Perubahan</button></div></div>
-</form>
-</div>
-</div>
+                <!-- Judul Utama dengan Gradasi Monokrom -->
+                <h1 class="text-4xl sm:text-6xl md:text-7xl font-extrabold tracking-tight mb-4 font-serif">
+                    Halo, Saya <span class="text-gradient">Dary</span>
+                </h1>
 
-<div id="projectModal" class="fixed inset-0 z-50 hidden flex items-center justify-center p-6 bg-black/70 backdrop-blur-md"><div class="liquid-glass p-8 rounded-3xl max-w-lg w-full relative border-white/30"><button onclick="closeModal()" class="absolute top-6 right-6 text-ice-300 hover:text-white text-xl"><i class="fa-solid fa-xmark"></i></button><h3 id="modalTitle" class="text-2xl font-extrabold text-white mb-4"></h3><p id="modalDescription" class="text-ice-200/90 text-sm leading-relaxed mb-6 font-light"></p><div class="flex justify-end"><button onclick="closeModal()" class="px-6 py-2.5 rounded-xl liquid-btn text-midnight-950 font-bold text-xs">Tutup</button></div></div></div>
+                <!-- Typewriter Idle Animation Subtitle -->
+                <div class="text-lg sm:text-2xl font-semibold text-neutral-700 h-10 mb-6 flex items-center justify-center">
+                    <span id="typewriter" class="border-r-2 border-black pr-1 font-mono"></span>
+                </div>
 
-<footer class="relative z-10 border-t border-white/10 bg-glacier-950/80 py-12 px-6"><div class="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6 text-center md:text-left"><div class="flex items-center gap-3"><span class="w-9 h-9 rounded-xl liquid-glass flex items-center justify-center text-ice-300"><i class="fa-solid fa-snowflake text-sm"></i></span><span id="footerBrand" class="font-extrabold text-white tracking-wider">DARY</span></div><p class="text-xs text-ice-300/60 font-light">© 2026 Portofolio Dary (I Gede Pasek Ary Sugiantara). All rights reserved.</p><div class="flex items-center gap-4 text-ice-300"><a id="footerGithub" href="#" target="_blank" class="hover:text-white transition"><i class="fa-brands fa-github text-lg"></i></a><a id="footerInstagram" href="#" target="_blank" class="hover:text-white transition"><i class="fa-brands fa-instagram text-lg"></i></a><a id="footerEmail" href="#" class="hover:text-white transition"><i class="fa-solid fa-envelope text-lg"></i></a></div></div></footer>
+                <!-- Deskripsi Singkat -->
+                <p class="max-w-2xl text-base sm:text-lg text-neutral-600 leading-relaxed mb-10 font-normal">
+                    Dary bersama Jarco membangun produk yang nyaman dipakai. Bukan sekadar tampilan, tapi pengalaman pengguna yang lancar, dokumentasi yang jelas, dan hasil yang konsisten.
+                </p>
 
-<script>
-const defaultData={name:"Dary",fullName:"I Gede Pasek Ary Sugiantara",role:"Full Stack Developer & Mahasiswa Informatika",avatarUrl:"https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&w=600&q=80",badgeText:"Fokus Kenyamanan Pengguna, Dokumentasi Praktikum & Publikasi Ilmiah",heroSub:"Mendedikasikan fokus pada kenyamanan pengguna, dokumentasi praktikum terstruktur, serta publikasi ilmiah yang berdampak.",rolesList:["Full Stack Web Developer","Mahasiswa Informatika","UI/UX Enthusiast","Creator Web & Mobile"],aboutTitle:"Membangun Produk Digital yang Nyaman, Intuitif & Handal",bio1:"Berkomitmen membangun produk digital yang berfokus pada kenyamanan dan pengalaman pengguna. Melalui proyek seperti Web Jaringan Coffee (JARCO) dan Jurnal KIAH, Dary memadukan desain intuitif, dokumentasi yang jelas, serta performa sistem yang handal dan konsisten.",bio2:"Setiap detail aplikasi dirancang agar siapa pun yang menggunakannya merasa mudah, efektif, dan percaya diri, baik untuk skala praktikum, aplikasi komersial, maupun repositori ilmiah.",github:"https://github.com/Destroy27/portofolio",instagram:"https://instagram.com/pasek_ary",email:"pasekary16@gmail.com",stats:{projects:"12",experience:"3",quality:"92%"},skills:[{title:"Full Stack Web Developer",icon:"fa-code",tags:["Laravel","Livewire","Alpine.js","Tailwind CSS","PHP","MySQL","REST API"]},{title:"Kolaborasi & Kerja Sama Tim",icon:"fa-users",tags:["Komunikasi Jelas","Saling Mendukung","Solusi Bersama","Manajemen Tim"]},{title:"Manajemen Waktu & Ketepatan",icon:"fa-clock",tags:["Tepat Waktu","Sesuai Deadline","Terstruktur","Dokumentasi Praktikum"]},{title:"Integritas & Kepercayaan",icon:"fa-shield-halved",tags:["Dapat Dipercaya","Publikasi Ilmiah","Konsistensi Hasil","Profesionalitas"]}],projects:[{title:"Web Jaringan Coffee (JARCO)",category:"Web / Jaringan",image:"https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?auto=format&fit=crop&w=800&q=80",desc:"Sistem pemesanan & manajemen kedai kopi terintegrasi yang menghadirkan pengalaman pengguna (UX) praktis, intuitif, cepat, dan responsif.",tags:["Laravel","Livewire","Tailwind CSS","UX Focus"]},{title:"Jurnal KIAH",category:"Publikasi / Jurnal",image:"https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?auto=format&fit=crop&w=800&q=80",desc:"Sistem pengelolaan dan publikasi ilmiah terstruktur untuk memudahkan repositori karya ilmiah dan akses publikasi yang kredibel.",tags:["Full Stack","Sistem Informasi","Publikasi Ilmiah","Dokumentasi"]}]};
-let currentData=JSON.parse(JSON.stringify(defaultData));
-function renderUI(){document.getElementById('navBrandName').innerHTML=currentData.name.toUpperCase()+'<span class="text-ice-400">.DEV</span>';document.getElementById('footerBrand').textContent=currentData.name.toUpperCase();document.getElementById('displayName').textContent=currentData.name;document.getElementById('displayBadge').textContent=currentData.badgeText;document.getElementById('displayHeroSub').textContent=currentData.heroSub;document.getElementById('displayAvatar').src=currentData.avatarUrl;document.getElementById('displayAboutName').textContent=currentData.name;document.getElementById('displayAboutFullName').textContent=currentData.fullName;document.getElementById('displayAboutRole').textContent=currentData.role;document.getElementById('displayAboutTitle').textContent=currentData.aboutTitle;document.getElementById('displayAboutBio1').textContent=currentData.bio1;document.getElementById('displayAboutBio2').textContent=currentData.bio2;document.getElementById('displayGithub').href=currentData.github;document.getElementById('displayInstagram').href=currentData.instagram;document.getElementById('displayEmail').href='mailto:'+currentData.email;document.getElementById('footerGithub').href=currentData.github;document.getElementById('footerInstagram').href=currentData.instagram;document.getElementById('footerEmail').href='mailto:'+currentData.email;document.getElementById('statProjects').textContent=currentData.stats.projects;document.getElementById('statExp').textContent=currentData.stats.experience;document.getElementById('statQuality').textContent=currentData.stats.quality;const sGrid=document.getElementById('skillsGrid');sGrid.innerHTML='';currentData.skills.forEach(s=>{const card=document.createElement('div');card.className='liquid-glass p-8 rounded-3xl flex flex-col justify-between group';card.innerHTML='<div><div class="w-14 h-14 rounded-2xl liquid-glass flex items-center justify-center text-ice-300 mb-6 group-hover:scale-110 transition shadow-[0_0_20px_rgba(56,189,248,0.3)]"><i class="fa-solid '+s.icon+' text-2xl"></i></div><h4 class="text-xl font-bold text-white mb-4">'+s.title+'</h4><div class="flex flex-wrap gap-2">'+s.tags.map(t=>'<span class="px-3 py-1.5 rounded-xl liquid-pill text-xs text-ice-200">'+t+'</span>').join('')+'</div></div>';sGrid.appendChild(card);});const pGrid=document.getElementById('projectsGrid');pGrid.innerHTML='';currentData.projects.forEach(p=>{const card=document.createElement('div');card.className='project-item liquid-glass rounded-3xl overflow-hidden flex flex-col group';card.innerHTML='<div class="relative h-56 overflow-hidden"><img src="'+p.image+'" alt="'+p.title+'" class="w-full h-full object-cover group-hover:scale-110 transition duration-700 opacity-90"><div class="absolute inset-0 bg-gradient-to-t from-glacier-950 via-transparent to-transparent"></div><span class="absolute top-4 right-4 px-3 py-1 rounded-full text-xs font-bold liquid-pill text-ice-300">'+p.category+'</span></div><div class="p-6 flex-1 flex flex-col justify-between"><div><h4 class="text-xl font-bold text-white mb-2 group-hover:text-ice-300 transition">'+p.title+'</h4><p class="text-ice-200/80 text-sm mb-6 font-light">'+p.desc+'</p></div><div><div class="flex flex-wrap gap-2 mb-6">'+p.tags.map(t=>'<span class="text-xs px-2.5 py-1 rounded-lg liquid-pill text-ice-300">'+t+'</span>').join('')+'</div><button onclick="openModal(\''+p.title.replace(/'/g,"\\'")+'\',\''+p.desc.replace(/'/g,"\\'")+'\')" class="w-full py-3 rounded-xl liquid-glass text-xs font-bold text-ice-300 hover:text-white flex items-center justify-center gap-2"><span>Detail Proyek</span><i class="fa-solid fa-arrow-up-right-from-square"></i></button></div></div>';pGrid.appendChild(card);});}
-function populateEditorForm(){document.getElementById('inputName').value=currentData.name;document.getElementById('inputRole').value=currentData.role;document.getElementById('inputAvatarUrl').value=currentData.avatarUrl.startsWith('data:')?'':currentData.avatarUrl;document.getElementById('inputRolesList').value=currentData.rolesList.join(', ');document.getElementById('inputHeroSub').value=currentData.heroSub;document.getElementById('inputBio1').value=currentData.bio1;document.getElementById('inputGithub').value=currentData.github;document.getElementById('inputInstagram').value=currentData.instagram;document.getElementById('inputEmail').value=currentData.email;document.getElementById('inputStatProjects').value=currentData.stats.projects;document.getElementById('inputStatExp').value=currentData.stats.experience;document.getElementById('inputStatQuality').value=currentData.stats.quality;}
-function toggleEditorModal(){const m=document.getElementById('editorModal');if(m.classList.contains('hidden')){populateEditorForm();m.classList.remove('hidden');}else{m.classList.add('hidden');}}
-function saveCustomData(e){e.preventDefault();currentData.name=document.getElementById('inputName').value||currentData.name;currentData.role=document.getElementById('inputRole').value||currentData.role;currentData.heroSub=document.getElementById('inputHeroSub').value||currentData.heroSub;currentData.bio1=document.getElementById('inputBio1').value||currentData.bio1;currentData.github=document.getElementById('inputGithub').value||currentData.github;currentData.instagram=document.getElementById('inputInstagram').value||currentData.instagram;currentData.email=document.getElementById('inputEmail').value||currentData.email;currentData.stats.projects=document.getElementById('inputStatProjects').value||currentData.stats.projects;currentData.stats.experience=document.getElementById('inputStatExp').value||currentData.stats.experience;currentData.stats.quality=document.getElementById('inputStatQuality').value||currentData.stats.quality;const rolesString=document.getElementById('inputRolesList').value;if(rolesString){currentData.rolesList=rolesString.split(',').map(r=>r.trim()).filter(r=>r.length>0);}const file=document.getElementById('inputAvatarFile');const url=document.getElementById('inputAvatarUrl').value;if(file.files&&file.files[0]){const r=new FileReader();r.onload=function(evt){currentData.avatarUrl=evt.target.result;renderUI();toggleEditorModal();};r.readAsDataURL(file.files[0]);}else{if(url)currentData.avatarUrl=url;renderUI();toggleEditorModal();}}
-function loadDefaultData(){currentData=JSON.parse(JSON.stringify(defaultData));populateEditorForm();renderUI();}
-let titleIndex=0;let charIndex=0;let isDeleting=false;const twEl=document.getElementById('typewriter');function typeWriter(){const titles=currentData.rolesList.length>0?currentData.rolesList:["Full Stack Developer"];if(titleIndex>=titles.length)titleIndex=0;const ct=titles[titleIndex];if(isDeleting){twEl.textContent=ct.substring(0,charIndex-1);charIndex--;}else{twEl.textContent=ct.substring(0,charIndex+1);charIndex++;}let speed=isDeleting?45:90;if(!isDeleting&&charIndex===ct.length){speed=2000;isDeleting=true;}else if(isDeleting&&charIndex<=0){isDeleting=false;titleIndex=(titleIndex+1)%titles.length;speed=400;}setTimeout(typeWriter,speed);}
-setTimeout(typeWriter,800);
-window.onload=function(){renderUI();};
-function openModal(title,desc){document.getElementById('modalTitle').textContent=title;document.getElementById('modalDescription').textContent=desc;document.getElementById('projectModal').classList.remove('hidden');}
-function closeModal(){document.getElementById('projectModal').classList.add('hidden');}
-</script>
+                <!-- Tombol CTA -->
+                <div class="flex flex-col sm:flex-row items-center justify-center gap-4 w-full sm:w-auto">
+                    <a href="#karya" class="w-full sm:w-auto px-8 py-3.5 rounded-full bg-black text-white font-medium text-sm hover:bg-neutral-800 transition-all shadow-lg flex items-center justify-center space-x-2 group">
+                        <span>Lihat Karya</span>
+                        <svg class="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+                    </a>
+                    <a href="#kontak" class="w-full sm:w-auto px-8 py-3.5 rounded-full liquid-glass-card text-neutral-900 font-medium text-sm hover:bg-white transition-all shadow-sm">
+                        Hubungi Saya
+                    </a>
+                </div>
+
+                <!-- Statistik Angka -->
+                <div class="grid grid-cols-3 gap-4 md:gap-8 mt-16 w-full max-w-xl">
+                    <div class="liquid-glass-card p-4 md:p-6 rounded-2xl text-center">
+                        <div class="text-2xl md:text-3xl font-extrabold text-black font-serif">12</div>
+                        <div class="text-xs md:text-sm text-neutral-500 mt-1 font-medium">Proyek</div>
+                    </div>
+                    <div class="liquid-glass-card p-4 md:p-6 rounded-2xl text-center">
+                        <div class="text-2xl md:text-3xl font-extrabold text-black font-serif">3 Thn</div>
+                        <div class="text-xs md:text-sm text-neutral-500 mt-1 font-medium">Pengalaman</div>
+                    </div>
+                    <div class="liquid-glass-card p-4 md:p-6 rounded-2xl text-center">
+                        <div class="text-2xl md:text-3xl font-extrabold text-black font-serif">92%</div>
+                        <div class="text-xs md:text-sm text-neutral-500 mt-1 font-medium">Kepuasan</div>
+                    </div>
+                </div>
+
+            </section>
+
+            <!-- Tentang Section -->
+            <section id="tentang" class="max-w-4xl mx-auto px-6 py-20">
+                <div class="liquid-glass-card p-8 md:p-12 rounded-3xl relative overflow-hidden">
+                    <div class="absolute -right-10 -bottom-10 w-40 h-40 bg-neutral-200/50 rounded-full blur-2xl pointer-events-none"></div>
+                    <h2 class="text-2xl md:text-3xl font-bold font-serif mb-6 text-black">Tentang Dary</h2>
+                    <p class="text-neutral-700 leading-relaxed text-base md:text-lg mb-6">
+                        Sebagai <strong>Full Stack Developer & Mahasiswa Informatika</strong>, saya berfokus pada kenyamanan memakai produk, penyusunan dokumentasi praktikum yang rapi, serta publikasi ilmiah yang berkualitas. Proyek Web Jaringan Coffee (JARCO) dan Jurnal KIAH dirancang agar siapa pun yang memakainya merasa mudah, intuitif, dan percaya diri.
+                    </p>
+                    <div class="flex flex-wrap gap-3 pt-2">
+                        <span class="px-4 py-1.5 rounded-full bg-white border border-black/10 text-xs font-semibold text-neutral-800">Informatika Undiksha</span>
+                        <span class="px-4 py-1.5 rounded-full bg-white border border-black/10 text-xs font-semibold text-neutral-800">Full-Stack Engineering</span>
+                        <span class="px-4 py-1.5 rounded-full bg-white border border-black/10 text-xs font-semibold text-neutral-800">Publikasi Ilmiah</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Keahlian Section -->
+            <section id="keahlian" class="max-w-5xl mx-auto px-6 py-16">
+                <div class="text-center mb-12">
+                    <h2 class="text-2xl md:text-3xl font-bold font-serif mb-3">Keahlian & Kompetensi</h2>
+                    <p class="text-neutral-500 text-sm md:text-base">Pilar profesionalisme dan kemampuan teknis dalam pengembangan produk.</p>
+                </div>
+                
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <div class="liquid-glass-card p-6 rounded-2xl text-center group">
+                        <div class="w-12 h-12 mx-auto mb-4 rounded-xl bg-black text-white flex items-center justify-center font-bold text-lg group-hover:scale-110 transition-transform">01</div>
+                        <h3 class="font-bold text-lg mb-2">Full Stack Web Developer</h3>
+                        <p class="text-xs text-neutral-600 leading-relaxed">Membangun arsitektur web dari sisi antarmuka hingga pengelolaan database yang handal.</p>
+                    </div>
+
+                    <div class="liquid-glass-card p-6 rounded-2xl text-center group">
+                        <div class="w-12 h-12 mx-auto mb-4 rounded-xl bg-black text-white flex items-center justify-center font-bold text-lg group-hover:scale-110 transition-transform">02</div>
+                        <h3 class="font-bold text-lg mb-2">Kerjasama Tim</h3>
+                        <p class="text-xs text-neutral-600 leading-relaxed">Kolaborasi yang solid bersama rekan kerja dan tim lintas disiplin untuk hasil optimal.</p>
+                    </div>
+
+                    <div class="liquid-glass-card p-6 rounded-2xl text-center group">
+                        <div class="w-12 h-12 mx-auto mb-4 rounded-xl bg-black text-white flex items-center justify-center font-bold text-lg group-hover:scale-110 transition-transform">03</div>
+                        <h3 class="font-bold text-lg mb-2">Tepat Waktu</h3>
+                        <p class="text-xs text-neutral-600 leading-relaxed">Manajemen waktu pengerjaan tugas dan proyek yang terstruktur serta disiplin tinggi.</p>
+                    </div>
+
+                    <div class="liquid-glass-card p-6 rounded-2xl text-center group">
+                        <div class="w-12 h-12 mx-auto mb-4 rounded-xl bg-black text-white flex items-center justify-center font-bold text-lg group-hover:scale-110 transition-transform">04</div>
+                        <h3 class="font-bold text-lg mb-2">Bisa Dipercaya</h3>
+                        <p class="text-xs text-neutral-600 leading-relaxed">Integritas dan transparansi penuh dalam setiap tanggung jawab dan amanah proyek.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Karya / Proyek Section -->
+            <section id="karya" class="max-w-5xl mx-auto px-6 py-16">
+                <div class="text-center mb-12">
+                    <h2 class="text-2xl md:text-3xl font-bold font-serif mb-3">Karya & Proyek Pilihan</h2>
+                    <p class="text-neutral-500 text-sm md:text-base">Portofolio unggulan yang dirancang dengan dedikasi tinggi.</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <!-- Proyek 1 -->
+                    <div class="liquid-glass-card p-6 md:p-8 rounded-3xl flex flex-col justify-between">
+                        <div>
+                            <div class="flex justify-between items-center mb-4">
+                                <span class="px-3 py-1 bg-black text-white text-[10px] uppercase font-bold tracking-widest rounded-full">Web / Jaringan</span>
+                                <span class="text-xs text-neutral-400 font-mono">Dary</span>
+                            </div>
+                            <h3 class="text-xl md:text-2xl font-bold font-serif mb-3">Web Jaringan Coffee (JARCO)</h3>
+                            <p class="text-neutral-600 text-sm leading-relaxed mb-6">
+                                Aplikasi web manajemen kafe dan pemesanan berbasis jaringan yang mengintegrasikan pengalaman pengguna interaktif, efisiensi operasional, dan kestabilan sistem.
+                            </p>
+                        </div>
+                        <button onclick="openModal('Web Jaringan Coffee (JARCO)', 'Aplikasi web manajemen kafe dan pemesanan berbasis jaringan yang dikembangkan bersama tim untuk memberikan kenyamanan maksimal bagi pengguna, navigasi yang intuitif, serta performa sistem yang stabil.')" class="inline-flex items-center space-x-2 text-sm font-bold text-black hover:opacity-70 transition-opacity">
+                            <span>Detail Proyek</span>
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+                        </button>
+                    </div>
+
+                    <!-- Proyek 2 -->
+                    <div class="liquid-glass-card p-6 md:p-8 rounded-3xl flex flex-col justify-between">
+                        <div>
+                            <div class="flex justify-between items-center mb-4">
+                                <span class="px-3 py-1 bg-black text-white text-[10px] uppercase font-bold tracking-widest rounded-full">Publikasi / Jurnal</span>
+                                <span class="text-xs text-neutral-400 font-mono">Dary</span>
+                            </div>
+                            <h3 class="text-xl md:text-2xl font-bold font-serif mb-3">Jurnal KIAH</h3>
+                            <p class="text-neutral-600 text-sm leading-relaxed mb-6">
+                                Publikasi ilmiah dan dokumentasi terstruktur yang membahas riset serta implementasi teknologi tepat guna dengan standar penulisan akademis yang ketat.
+                            </p>
+                        </div>
+                        <button onclick="openModal('Jurnal KIAH', 'Dokumentasi riset dan publikasi ilmiah terstruktur yang berfokus pada analisis mendalam, metodologi ilmiah yang valid, serta kontribusi nyata dalam bidang informatika.')" class="inline-flex items-center space-x-2 text-sm font-bold text-black hover:opacity-70 transition-opacity">
+                            <span>Detail Proyek</span>
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Kontak Section -->
+            <section id="kontak" class="max-w-4xl mx-auto px-6 py-20">
+                <div class="liquid-glass-card p-8 md:p-12 rounded-3xl text-center">
+                    <h2 class="text-2xl md:text-3xl font-bold font-serif mb-4">Mari Terhubung</h2>
+                    <p class="text-neutral-600 text-sm md:text-base max-w-xl mx-auto mb-8">
+                        Tertarik berkolaborasi dalam proyek web, riset, atau diskusi seputar teknologi? Silakan hubungi saya melalui tautan di bawah ini.
+                    </p>
+                    <div class="flex flex-wrap justify-center gap-4">
+                        <a href="mailto:pasekary16@gmail.com" class="px-6 py-3 rounded-full bg-black text-white text-xs md:text-sm font-semibold hover:bg-neutral-800 transition-all shadow-md flex items-center space-x-2">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+                            <span>pasekary16@gmail.com</span>
+                        </a>
+                        <a href="https://github.com/dary-sugiantara" target="_blank" class="px-6 py-3 rounded-full liquid-glass text-neutral-900 text-xs md:text-sm font-semibold hover:bg-white transition-all shadow-sm flex items-center space-x-2">
+                            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg>
+                            <span>github.com/dary-sugiantara</span>
+                        </a>
+                        <a href="https://instagram.com/pasek_ary" target="_blank" class="px-6 py-3 rounded-full liquid-glass text-neutral-900 text-xs md:text-sm font-semibold hover:bg-white transition-all shadow-sm flex items-center space-x-2">
+                            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+                            <span>@pasek_ary</span>
+                        </a>
+                    </div>
+                </div>
+            </section>
+
+        </main>
+
+        <!-- Footer -->
+        <footer class="w-full py-8 text-center text-xs text-neutral-500 border-t border-neutral-100 liquid-glass">
+            <p>&copy; 2026 Dary (I Gede Pasek Ary Sugiantara). All rights reserved.</p>
+        </footer>
+
+    </div>
+
+    <!-- Project Modal -->
+    <div id="projectModal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/40 backdrop-blur-sm hidden opacity-0 transition-opacity duration-300">
+        <div class="liquid-glass p-8 rounded-3xl max-w-lg w-full relative shadow-2xl transform scale-95 transition-transform duration-300" id="modalContent">
+            <button onclick="closeModal()" class="absolute top-4 right-4 w-8 h-8 rounded-full bg-black/5 hover:bg-black/10 flex items-center justify-center font-bold text-sm">✕</button>
+            <h3 id="modalTitle" class="text-2xl font-bold font-serif mb-4"></h3>
+            <p id="modalDesc" class="text-neutral-600 text-sm leading-relaxed mb-6"></p>
+            <button onclick="closeModal()" class="w-full py-3 rounded-full bg-black text-white text-sm font-semibold hover:bg-neutral-800 transition-all">Tutup</button>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script>
+        // Typewriter Idle Effect
+        const roles = [
+            "Full Stack Developer",
+            "Mahasiswa Informatika",
+            "UI/UX Enthusiast",
+            "Mobile & Web Creator"
+        ];
+        let roleIndex = 0;
+        let charIndex = 0;
+        let isDeleting = false;
+        const typewriterElement = document.getElementById("typewriter");
+
+        function typeEffect() {
+            const currentRole = roles[roleIndex];
+            if (isDeleting) {
+                typewriterElement.textContent = currentRole.substring(0, charIndex - 1);
+                charIndex--;
+            } else {
+                typewriterElement.textContent = currentRole.substring(0, charIndex + 1);
+                charIndex++;
+            }
+
+            let typingSpeed = isDeleting ? 50 : 100;
+
+            if (!isDeleting && charIndex === currentRole.length) {
+                typingSpeed = 2000; // Pause at end
+                isDeleting = true;
+            } else if (isDeleting && charIndex === 0) {
+                isDeleting = false;
+                roleIndex = (roleIndex + 1) % roles.length;
+                typingSpeed = 500;
+            }
+
+            setTimeout(typeEffect, typingSpeed);
+        }
+        document.addEventListener("DOMContentLoaded", typeEffect);
+
+        // Click Ripple Effect
+        document.addEventListener("click", function (e) {
+            // Avoid triggering inside modals or interactive buttons if needed
+            const ripple = document.createElement("div");
+            ripple.className = "ripple";
+            ripple.style.left = `${e.clientX}px`;
+            ripple.style.top = `${e.clientY}px`;
+            document.body.appendChild(ripple);
+            setTimeout(() => ripple.remove(), 600);
+        });
+
+        // Modal Functions
+        function openModal(title, desc) {
+            document.getElementById("modalTitle").textContent = title;
+            document.getElementById("modalDesc").textContent = desc;
+            const modal = document.getElementById("projectModal");
+            const content = document.getElementById("modalContent");
+            modal.classList.remove("hidden");
+            setTimeout(() => {
+                modal.classList.remove("opacity-0");
+                content.classList.remove("scale-95");
+                content.classList.add("scale-100");
+            }, 10);
+        }
+
+        function closeModal() {
+            const modal = document.getElementById("projectModal");
+            const content = document.getElementById("modalContent");
+            modal.classList.add("opacity-0");
+            content.classList.remove("scale-100");
+            content.classList.add("scale-95");
+            setTimeout(() => {
+                modal.classList.add("hidden");
+            }, 300);
+        }
+
+        // Canvas Snowfall Animation (Depth of Field)
+        const canvas = document.getElementById("snowCanvas");
+        const ctx = canvas.getContext("2d");
+
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        window.addEventListener("resize", resizeCanvas);
+        resizeCanvas();
+
+        const snowflakes = [];
+        const numFlakes = 65;
+
+        for (let i = 0; i < numFlakes; i++) {
+            snowflakes.push({
+                x: Math.random() * canvas.width,
+                y: Math.random() * canvas.height,
+                radius: Math.random() * 3.5 + 1,
+                speedY: Math.random() * 0.8 + 0.3,
+                speedX: (Math.random() - 0.5) * 0.5,
+                blur: Math.random() * 4 + 1, // Depth of field blur simulation
+                opacity: Math.random() * 0.5 + 0.2
+            });
+        }
+
+        function drawSnow() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            
+            snowflakes.forEach(flake => {
+                ctx.save();
+                ctx.beginPath();
+                ctx.filter = `blur(${flake.blur}px)`;
+                ctx.fillStyle = `rgba(30, 30, 30, ${flake.opacity})`;
+                ctx.arc(flake.x, flake.y, flake.radius, 0, Math.PI * 2);
+                ctx.fill();
+                ctx.restore();
+
+                // Update position
+                flake.y += flake.speedY;
+                flake.x += flake.speedX;
+
+                if (flake.y > canvas.height + 10) {
+                    flake.y = -10;
+                    flake.x = Math.random() * canvas.width;
+                }
+                if (flake.x > canvas.width + 10) {
+                    flake.x = -10;
+                } else if (flake.x < -10) {
+                    flake.x = canvas.width + 10;
+                }
+            });
+
+            requestAnimationFrame(drawSnow);
+        }
+        drawSnow();
+    </script>
 </body>
 </html>
